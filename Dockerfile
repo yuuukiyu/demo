@@ -1,14 +1,12 @@
-# ベースイメージ
-FROM eclipse-temurin:17-jdk
-
-# 作業ディレクトリ設定
+# 🔨 ビルドステージ
+FROM maven:3.9.4-eclipse-temurin-17 AS builder
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# jar をコピー
-COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
-
-# ポート開放
+# 🚀 実行ステージ
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+COPY --from=builder /app/target/demo-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# 起動コマンド
 ENTRYPOINT ["java", "-jar", "app.jar"]
