@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>ログイン | ToDo管理アプリ</title>
-  <link rel="stylesheet" th:href="@{/style.css}">
+<meta charset="UTF-8">
+<title>ログイン | ToDo管理アプリ</title>
+<link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-  <div class="login-container">
-    <h1>ToDo管理アプリ</h1>
+	<div class="login-container">
+		<h1>ToDo管理アプリ</h1>
 
-    <!-- 🔻 ログイン失敗時のエラー表示 -->
-    <p th:if="${param.error}" style="color: red;">ログインに失敗しました。</p>
+		<!-- 🔻 ログイン失敗時のエラー表示 -->
+		<div th:if="${param.error}" class="error-message">
+			ログインに失敗しました。ユーザー名またはパスワードが間違っています。</div>
+		<form th:action="@{/login}" method="post"
+			onsubmit="return validateForm()">
+			<div class="input-group">
+				<label for="username">ユーザーID</label> <input type="text"
+					id="username" name="username">
+				<p id="username-error" style="color: red; display: none;">ユーザーIDを入力してください</p>
+			</div>
 
-    <form th:action="@{/login}" method="post" onsubmit="return validateForm()">
-      <div class="input-group">
-        <label for="username">ユーザーID</label>
-        <input type="text" id="username" name="username">
-        <p id="username-error" style="color:red; display:none;">ユーザーIDを入力してください</p>
-      </div>
+			<div class="input-group">
+				<label for="password">パスワード</label> <input type="password"
+					id="password" name="password">
+				<p id="password-error" style="color: red; display: none;">パスワードを入力してください</p>
+			</div>
 
-      <div class="input-group">
-        <label for="password">パスワード</label>
-        <input type="password" id="password" name="password">
-        <p id="password-error" style="color:red; display:none;">パスワードを入力してください</p>
-      </div>
+			<div class="checkbox-group">
+				<input type="checkbox" id="remember" name="remember"> <label
+					for="remember">ログイン情報を記憶する</label>
+			</div>
 
-      <div class="checkbox-group">
-        <input type="checkbox" id="remember" name="remember">
-        <label for="remember">ログイン情報を記憶する</label>
-      </div>
+			<button type="submit">ログイン</button>
+		</form>
 
-      <button type="submit">ログイン</button>
-    </form>
+		<p class="register-link">
+			アカウントをお持ちでない方は <a href="/register">新規登録</a> へ
+		</p>
+	</div>
 
-    <p class="register-link">アカウントをお持ちでない方は <a href="/register">新規登録</a> へ</p>
-  </div>
-
-  <script>
+	<script>
     function validateForm() {
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();

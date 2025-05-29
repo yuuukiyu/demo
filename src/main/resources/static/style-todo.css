@@ -158,3 +158,29 @@ body {
 .sort-buttons form button:hover {
   background-color: #ddd;
 }
+@media screen and (max-width: 480px) {
+  .todo-container {
+    width: 90%;
+    padding: 16px;
+  }
+
+  .todo-form,
+  .edit-inputs,
+  .todo-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .edit-inputs input,
+  .todo-form input,
+  .todo-form button,
+  .edit-buttons button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .sort-buttons {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}

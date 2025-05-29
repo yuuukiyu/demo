@@ -21,8 +21,8 @@
 
 		<form th:action="@{/todo/add}" method="post" class="todo-form">
 			<input type="text" name="task" placeholder="タスクを入力" required
-				maxlength="15" oninput="limitLength(this, 15)"> <input
-				type="date" name="deadline" required>
+				maxlength="15" oninput="limitLength(this, 15)"> 
+				<input type="date" name="deadline" required>
 			<button type="submit">追加</button>
 		</form>
 		<!-- ソートボタン -->
