@@ -8,6 +8,7 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home() {
-	    return "home"; // home.html を templates に配置して表示
+	    return "redirect:/login"; // ログイン画面にリダイレクトする
 	}
+
 }

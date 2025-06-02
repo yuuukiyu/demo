@@ -9,4 +9,4 @@ public class LoginController {
     public String login() {
         return "login"; // templates/login.html を返す
     }
-}
+ }

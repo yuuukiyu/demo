@@ -14,7 +14,7 @@ WORKDIR /app
 
 # ビルド済み JAR をコピー
 COPY --from=builder /app/target/demo-0.0.1-SNAPSHOT.jar app.jar
-
+ENTRYPOINT ["java", "-jar", "app.jar"]
 # 使用するポートを指定
 EXPOSE 8080
 
